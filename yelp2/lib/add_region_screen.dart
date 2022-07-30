@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yelp2/providers/city_provider.dart';
+import 'package:yelp2/providers/region_provider.dart';
 
 class AddRegionScreen extends StatelessWidget {
   final TextEditingController cityController = TextEditingController();
@@ -17,7 +17,7 @@ class AddRegionScreen extends StatelessWidget {
         InkWell(
           onTap: () {
             final input = cityController.value.text;
-            CityProvider().add(input);
+            RegionProvider().add(input);
             Navigator.pop(context);
           },
           child: Container(

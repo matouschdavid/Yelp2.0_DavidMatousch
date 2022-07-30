@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yelp2/providers/city_provider.dart';
+import 'package:yelp2/providers/region_provider.dart';
 import 'package:yelp2/regions_card.dart';
 
 class RegionsScreen extends StatefulWidget {
@@ -10,12 +10,12 @@ class RegionsScreen extends StatefulWidget {
 }
 
 class _RegionsScreenState extends State<RegionsScreen> {
-  List<String> cities = [];
+  List<String> regions = [];
 
   @override
   void initState() {
     super.initState();
-    CityProvider().load().then((value) => setState(() => cities = value));
+    RegionProvider().load().then((value) => setState(() => regions = value));
   }
 
   @override
@@ -24,7 +24,7 @@ class _RegionsScreenState extends State<RegionsScreen> {
       appBar: AppBar(
         title: const Text('Yelp 2.0'),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: IconButton(
         icon: const Icon(Icons.add_outlined),
         onPressed: _addRegion,
@@ -32,7 +32,7 @@ class _RegionsScreenState extends State<RegionsScreen> {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: cities.map((String c) => RegionsCard(c)).toList(),
+          children: regions.map((String c) => RegionsCard(c)).toList(),
         ),
       ),
     );
@@ -41,7 +41,7 @@ class _RegionsScreenState extends State<RegionsScreen> {
   void _addRegion() async {
     await Navigator.pushNamed(context, '/add_region');
     setState(() {
-      cities = CityProvider().get();
+      regions = RegionProvider().get();
     });
   }
 }

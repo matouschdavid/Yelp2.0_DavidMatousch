@@ -1,12 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class CityLoader {
+abstract class RegionLoader {
   Future<List<String>?> load();
 
   void save(List<String> data);
 }
 
-class DummyCityLoader implements CityLoader {
+class DummyRegionLoader implements RegionLoader {
   @override
   Future<List<String>?> load() {
     return Future.value(['Linz', 'Wien', 'Riga']);
@@ -16,18 +16,18 @@ class DummyCityLoader implements CityLoader {
   void save(List<String> data) {}
 }
 
-class StorageCityLoader implements CityLoader {
+class StorageRegionLoader implements RegionLoader {
   // ignore: constant_identifier_names
-  static const CITIES_KEY = 'CITIES';
+  static const REGIONS_KEY = 'REGIONS';
   @override
   Future<List<String>?> load() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getStringList(CITIES_KEY);
+    return prefs.getStringList(REGIONS_KEY);
   }
 
   @override
   Future<void> save(List<String> data) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setStringList(CITIES_KEY, data);
+    prefs.setStringList(REGIONS_KEY, data);
   }
 }
