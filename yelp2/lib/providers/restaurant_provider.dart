@@ -1,5 +1,6 @@
+import 'package:yelp2/loaders/loader.dart';
 import 'package:yelp2/providers/data_provider.dart';
-import 'package:yelp2/restaurant_loaders.dart';
+import 'package:yelp2/loaders/restaurant_loaders.dart';
 
 class Restaurant {
   final String name;
@@ -9,5 +10,12 @@ class Restaurant {
 }
 
 class RestaurantProvider extends DataProvider<Restaurant> {
-  RestaurantProvider() : super(DummyRestaurantLoader());
+  static final RestaurantProvider _instance =
+      RestaurantProvider._internal(DummyRestaurantLoader());
+
+  RestaurantProvider._internal(Loader<Restaurant> loader) : super(loader);
+
+  factory RestaurantProvider() {
+    return _instance;
+  }
 }

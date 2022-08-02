@@ -1,5 +1,4 @@
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yelp2/providers/data_provider.dart';
+import 'package:yelp2/loaders/loader.dart';
 import 'package:yelp2/providers/restaurant_provider.dart';
 
 class DummyRestaurantLoader implements Loader<Restaurant> {

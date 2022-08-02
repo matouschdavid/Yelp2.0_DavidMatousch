@@ -1,3 +1,5 @@
+import 'package:yelp2/loaders/loader.dart';
+
 class DataProvider<T> {
   List<T> _data = [];
   final Loader<T> loader;
@@ -16,19 +18,5 @@ class DataProvider<T> {
   Future<List<T>> load() async {
     _data = (await loader.load()) ?? [];
     return get();
-  }
-}
-
-abstract class Loader<T> {
-  Future<List<T>?> load();
-
-  void save(List<T> data);
-}
-
-class ProviderFactory {
-  static Map<Type, DataProvider> providers = {};
-
-  static DataProvider get<T>(DataProvider<T> Function() createNew) {
-    return providers.putIfAbsent(T.runtimeType, createNew);
   }
 }

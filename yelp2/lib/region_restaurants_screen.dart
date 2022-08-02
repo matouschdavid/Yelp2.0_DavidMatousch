@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yelp2/providers/data_provider.dart';
 import 'package:yelp2/providers/restaurant_provider.dart';
 import 'package:yelp2/restaurants_card.dart';
 import 'package:yelp2/screen.dart';
@@ -25,8 +24,9 @@ class _RegionRestaurantsScreenState extends State<RegionRestaurantsScreen> {
   @override
   void initState() {
     super.initState();
-    ProviderFactory.get(() => RestaurantProvider()).load().then(
-        (value) => setState(() => restaurants = value as List<Restaurant>));
+    RestaurantProvider()
+        .load()
+        .then((value) => setState(() => restaurants = value));
   }
 
   @override

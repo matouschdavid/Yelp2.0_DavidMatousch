@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yelp2/ownCard.dart';
+import 'package:yelp2/own_card.dart';
 import 'package:yelp2/region_restaurants_screen.dart';
 
 class RegionsCard extends OwnCard {
