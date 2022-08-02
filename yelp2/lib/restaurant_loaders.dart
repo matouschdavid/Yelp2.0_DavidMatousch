@@ -1,13 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yelp2/providers/data_provider.dart';
 import 'package:yelp2/providers/restaurant_provider.dart';
 
-abstract class RestaurantLoader {
-  Future<List<Restaurant>?> load();
-
-  void save(List<Restaurant> data);
-}
-
-class DummyRestaurantLoader implements RestaurantLoader {
+class DummyRestaurantLoader implements Loader<Restaurant> {
   @override
   Future<List<Restaurant>?> load() {
     return Future.value(const [

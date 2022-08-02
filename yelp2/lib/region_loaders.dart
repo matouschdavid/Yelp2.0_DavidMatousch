@@ -1,12 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yelp2/providers/data_provider.dart';
 
-abstract class RegionLoader {
-  Future<List<String>?> load();
-
-  void save(List<String> data);
-}
-
-class DummyRegionLoader implements RegionLoader {
+class DummyRegionLoader implements Loader<String> {
   @override
   Future<List<String>?> load() {
     return Future.value(['Linz', 'Wien', 'Riga']);
@@ -16,7 +11,7 @@ class DummyRegionLoader implements RegionLoader {
   void save(List<String> data) {}
 }
 
-class StorageRegionLoader implements RegionLoader {
+class StorageRegionLoader implements Loader<String> {
   // ignore: constant_identifier_names
   static const REGIONS_KEY = 'REGIONS';
   @override

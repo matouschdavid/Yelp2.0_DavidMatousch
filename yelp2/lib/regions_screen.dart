@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yelp2/providers/data_provider.dart';
 import 'package:yelp2/providers/region_provider.dart';
 import 'package:yelp2/regions_card.dart';
+import 'package:yelp2/screen.dart';
 
 class RegionsScreen extends StatefulWidget {
   const RegionsScreen({Key? key}) : super(key: key);
@@ -15,25 +17,18 @@ class _RegionsScreenState extends State<RegionsScreen> {
   @override
   void initState() {
     super.initState();
-    RegionProvider().load().then((value) => setState(() => regions = value));
+    ProviderFactory.get(
+      () => RegionProvider(),
+    ).load().then((value) => setState(() => regions = value as List<String>));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Yelp 2.0'),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: IconButton(
-        icon: const Icon(Icons.add_outlined),
-        onPressed: _addRegion,
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: regions.map((String c) => RegionsCard(c)).toList(),
-        ),
+    return Screen(
+      onFabTab: _addRegion,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: regions.map((String c) => RegionsCard(c)).toList(),
       ),
     );
   }
@@ -41,7 +36,9 @@ class _RegionsScreenState extends State<RegionsScreen> {
   void _addRegion() async {
     await Navigator.pushNamed(context, '/add_region');
     setState(() {
-      regions = RegionProvider().get();
+      regions = ProviderFactory.get(
+        () => RegionProvider(),
+      ).get() as List<String>;
     });
   }
 }
