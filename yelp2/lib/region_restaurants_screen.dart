@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yelp2/providers/restaurant_provider.dart';
 import 'package:yelp2/restaurants_card.dart';
+import 'package:yelp2/screen.dart';
 
 class RegionRestaurantsScreenArgs {
   final String region;
@@ -30,26 +31,16 @@ class _RegionRestaurantsScreenState extends State<RegionRestaurantsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Yelp 2.0'),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: IconButton(
-        icon: const Icon(Icons.add_outlined),
-        onPressed: _addRestaurant,
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(widget.args.region),
-            Column(
-              children:
-                  restaurants.map((Restaurant r) => RestaurantCard(r)).toList(),
-            )
-          ],
-        ),
+    return Screen(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(widget.args.region),
+          Column(
+            children:
+                restaurants.map((Restaurant r) => RestaurantCard(r)).toList(),
+          )
+        ],
       ),
     );
   }
