@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yelp2/add_region_screen.dart';
+import 'package:yelp2/add_restaurant_screen.dart';
 import 'package:yelp2/fade_route.dart';
 import 'package:yelp2/region_restaurants_screen.dart';
 import 'package:yelp2/regions_screen.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
           case '/region_restaurants':
             return FadeRoute(RegionRestaurantsScreen(
                 settings.arguments as RegionRestaurantsScreenArgs));
+          case '/add_restaurant':
+            return FadeRoute(AddRestaurantScreen(
+                settings.arguments as AddRestaurantScreenArgs));
           default:
             return FadeRoute(const RegionsScreen());
         }

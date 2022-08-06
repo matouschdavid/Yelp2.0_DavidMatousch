@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yelp2/add_restaurant_screen.dart';
 import 'package:yelp2/providers/restaurant_provider.dart';
 import 'package:yelp2/restaurants_card.dart';
 import 'package:yelp2/screen.dart';
@@ -32,6 +33,7 @@ class _RegionRestaurantsScreenState extends State<RegionRestaurantsScreen> {
   @override
   Widget build(BuildContext context) {
     return Screen(
+      onFabPressed: _addRestaurant,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -45,5 +47,11 @@ class _RegionRestaurantsScreenState extends State<RegionRestaurantsScreen> {
     );
   }
 
-  void _addRestaurant() {}
+  void _addRestaurant() async {
+    await Navigator.pushNamed(context, '/add_restaurant',
+        arguments: AddRestaurantScreenArgs(widget.args.region));
+    // setState(() {
+    //   regions = RegionProvider().get();
+    // });
+  }
 }
