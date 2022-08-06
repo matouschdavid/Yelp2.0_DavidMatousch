@@ -4,20 +4,10 @@ class RestaurantProvider {
   final RestaurantLoader loader = DummyRestaurantLoader();
   List<Restaurant> _restaurants = [];
 
-  // private static CityProvider instance;
   static final RestaurantProvider _instance = RestaurantProvider._internal();
-
-  // public static CityProvider getInstance(){
-  //  if(instance == null){
-  //   instance = new CityProvider();
-  //  }
-  //  return instance;
-  // }
   factory RestaurantProvider() {
     return _instance;
   }
-
-  //private CityProvider(){}
   RestaurantProvider._internal();
 
   void add(Restaurant restaurant) {
