@@ -1,7 +1,7 @@
 import 'package:yelp2/restaurant_loaders.dart';
 
 class RestaurantProvider {
-  final RestaurantLoader loader = DummyRestaurantLoader();
+  final RestaurantLoader loader = DatabaseRestaurantLoader();
   List<Restaurant> _restaurants = [];
 
   static final RestaurantProvider _instance = RestaurantProvider._internal();
@@ -19,8 +19,8 @@ class RestaurantProvider {
     return _restaurants;
   }
 
-  Future<List<Restaurant>> load() async {
-    _restaurants = (await loader.load()) ?? [];
+  Future<List<Restaurant>> load(String regionId) async {
+    _restaurants = (await loader.load(regionId)) ?? [];
     return get();
   }
 }
@@ -30,4 +30,8 @@ class Restaurant {
   final double rating;
 
   const Restaurant(this.name, this.rating);
+
+  Restaurant.fromJson(Map<String, dynamic> data)
+      : name = data['name'] as String,
+        rating = data['rating'] as double;
 }

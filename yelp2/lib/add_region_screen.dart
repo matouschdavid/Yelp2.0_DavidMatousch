@@ -16,8 +16,8 @@ class AddRegionScreen extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            final input = cityController.value.text;
-            RegionProvider().add(input);
+            // final input = cityController.value.text;
+            // RegionProvider().add(input);
             Navigator.pop(context);
           },
           child: Container(

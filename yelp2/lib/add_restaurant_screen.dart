@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yelp2/buttons.dart';
 import 'package:yelp2/input_field.dart';
+import 'package:yelp2/providers/region_provider.dart';
 import 'package:yelp2/screen.dart';
 
 class AddRestaurantScreenArgs {
-  final String region;
+  final Region region;
 
   const AddRestaurantScreenArgs(this.region);
 }

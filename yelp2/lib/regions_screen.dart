@@ -11,7 +11,7 @@ class RegionsScreen extends StatefulWidget {
 }
 
 class _RegionsScreenState extends State<RegionsScreen> {
-  List<String> regions = [];
+  List<Region> regions = [];
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _RegionsScreenState extends State<RegionsScreen> {
       onFabPressed: _addRegion,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: regions.map((String c) => RegionsCard(c)).toList(),
+        children: regions.map((Region r) => RegionsCard(r)).toList(),
       ),
     );
   }
